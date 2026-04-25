@@ -1,0 +1,42 @@
+# Translation file
+
+#
+# Generic
+#
+
+# Module label 'ModuleTestModuleName'
+ModuleTestModuleName = TestModule
+# Module description 'ModuleTestModuleDesc'
+ModuleTestModuleDesc = Module for testing stuff...
+
+#
+# Admin page
+#
+TestModuleSetup = TestModule setup
+Settings = Settings
+TestModuleSetupPage = TestModule setup page
+NewSection=New section
+TESTMODULE_MYPARAM1 = My param 1
+TESTMODULE_MYPARAM1Tooltip = My param 1 tooltip
+TESTMODULE_MYPARAM2=My param 2
+TESTMODULE_MYPARAM2Tooltip=My param 2 tooltip
+
+
+#
+# About page
+#
+About = About
+TestModuleAbout = About TestModule
+TestModuleAboutPage = TestModule about page
+
+#
+# Sample page
+#
+TestModuleArea = Home TestModule
+MyPageName = My page name
+
+#
+# Sample widget
+#
+MyWidget = My widget
+MyWidgetDescription = My widget description
