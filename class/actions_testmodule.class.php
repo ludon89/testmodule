@@ -93,6 +93,19 @@ class ActionsTestModule extends CommonHookActions
 
 		$contextArray = $hookmanager->contextarray;
 
+		if (in_array('propalcard', $contextArray)) {
+			$testModuleRootDir = $conf->file->dol_document_root['alt0'] . '/testmodule';
+			$tplFile = $testModuleRootDir . '/tpl/objectline_title.tpl.php';
+
+			if (file_exists($tplFile)) {
+				@include $tplFile;
+
+				return 1;
+			} else {
+				dol_syslog("Template file not found: " . $tplFile, LOG_ERR);
+			}
+		}
+
 		return 0;
 	}
 }
