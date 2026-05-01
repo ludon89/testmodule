@@ -101,17 +101,31 @@ class ActionsTestModule extends CommonHookActions
 		dol_syslog(__METHOD__ . " — Hook method called for context '" . $parameters['currentcontext'] . "'", LOG_DEBUG);
 
 		$contextArray = $hookmanager->contextarray;
+		// Contexts for pages that use a special object line template
+		$excludedTplReplacementContexts = [
+			'bomcard',					// htdocs/bom/bom_card.php
+			'expeditioncard',			// htdocs/expedition/card.php
+			'receptioncard',			// htdocs/reception/card.php
+			'jobcard',					// htdocs/hrm/evaluation_card.php
+			'evaluationcard'			// htdocs/hrm/job_card.php
+		];
 
-		if (in_array('propalcard', $contextArray)) {
+		// Do not overload template if hook is called in one of the contexts above
+		if (!array_intersect($excludedTplReplacementContexts, $contextArray)) {
 			$testModuleRootDir = $conf->file->dol_document_root['alt0'] . '/testmodule';
 			$tplFile = $testModuleRootDir . '/tpl/objectline_title.tpl.php';
 
 			if (file_exists($tplFile)) {
+				// Declare global variables needed in object line templates
+				global $form, $extrafields;
+				global $inputalsopricewithtax, $outputalsopricewithtax;
+				global $disableedit, $disablemove, $disableremove;
+
 				@include $tplFile;
 
 				return 1;
 			} else {
-				dol_syslog("Template file not found: " . $tplFile, LOG_ERR);
+				dol_syslog("Template file not found: " . $tplFile, LOG_WARNING);
 			}
 		}
 

@@ -49,7 +49,7 @@ if (empty($object) || !is_object($object)) {
 '@phan-var-force CommonObject|Facture $this
  @phan-var-force CommonObject $object';
 
-print "<!-- BEGIN PHP TEMPLATE objectline_title.tpl.php -->\n";
+print "<!-- BEGIN PHP TEMPLATE testmodule_objectline_title.tpl.php -->\n";
 
 // Title line
 print "<thead>\n";
@@ -82,7 +82,7 @@ if (in_array($object->element, array('propal', 'commande', 'facture', 'order_sup
 print '</th>';
 
 // Supplier ref
-if ($this->element == 'supplier_proposal' || $this->element == 'order_supplier' || $this->element == 'invoice_supplier' || $this->element == 'invoice_supplier_rec') {
+if ($object->element == 'supplier_proposal' || $object->element == 'order_supplier' || $object->element == 'invoice_supplier' || $object->element == 'invoice_supplier_rec') {
 	print '<th class="linerefsupplier maxwidth125"><span id="title_fourn_ref">'.$langs->trans("SupplierRef").'</span></th>';
 }
 
@@ -118,9 +118,9 @@ print '</th>';
 print '<th class="linecoluht right nowraponall">'.$langs->trans('PriceUHT').'</th>';
 
 // Multicurrency HT / excl tax
-if (isModEnabled("multicurrency") && $this->multicurrency_code && $this->multicurrency_code != $conf->currency) {
+if (isModEnabled("multicurrency") && $object->multicurrency_code && $object->multicurrency_code != $conf->currency) {
 	print '<th class="linecoluht_currency right" style="width: 80px">'.$langs->trans('PriceUHT');
-	print '&nbsp;<span class="opacitymedium">('.$langs->getCurrencySymbol($this->multicurrency_code).')<span></th>';
+	print '&nbsp;<span class="opacitymedium">('.$langs->getCurrencySymbol($object->multicurrency_code).')<span></th>';
 }
 
 // Price TTC / incl tax
@@ -129,9 +129,9 @@ if (!empty($inputalsopricewithtax) && !getDolGlobalInt('MAIN_NO_INPUT_PRICE_WITH
 }
 
 // Multicurrency TTC / incl tax
-if (isModEnabled("multicurrency") && $this->multicurrency_code && $this->multicurrency_code != $conf->currency && !empty($inputalsopricewithtax) && !getDolGlobalInt('MAIN_NO_INPUT_PRICE_WITH_TAX')) {
+if (isModEnabled("multicurrency") && $object->multicurrency_code && $object->multicurrency_code != $conf->currency && !empty($inputalsopricewithtax) && !getDolGlobalInt('MAIN_NO_INPUT_PRICE_WITH_TAX')) {
 	print '<th class="linecoluttc_currency right " style="width: 80px">'.$langs->trans('PriceUTTC');
-	print '&nbsp;<span class="opacitymedium">('.$langs->getCurrencySymbol($this->multicurrency_code).')<span></th>';
+	print '&nbsp;<span class="opacitymedium">('.$langs->getCurrencySymbol($object->multicurrency_code).')<span></th>';
 }
 
 // Qty
@@ -164,7 +164,7 @@ if (in_array($object->element, array('propal', 'commande', 'facture')) && $objec
 print '</th>';
 
 // Fields for situation invoice
-if (property_exists($this, 'situation_cycle_ref') && isset($this->situation_cycle_ref) && $this->situation_cycle_ref) {
+if (property_exists($object, 'situation_cycle_ref') && isset($object->situation_cycle_ref) && $object->situation_cycle_ref) {
 	print '<th class="linecolcycleref right">'.$langs->trans('CumulativeProgression').'</th>';
 	if (getDolGlobalInt('INVOICE_USE_SITUATION') == 2) {
 		print '<th class="linecolcycleref2 right">' . $langs->trans('SituationInvoiceProgressCurrent') . '</th>';
@@ -215,9 +215,9 @@ if ($usemargins && isModEnabled('margin') && empty($user->socid)) {
 print '<th class="linecolht right">'.$langs->trans('TotalHTShort').'</th>';
 
 // Multicurrency
-if (isModEnabled("multicurrency") && $this->multicurrency_code && $this->multicurrency_code != $conf->currency) {
+if (isModEnabled("multicurrency") && $object->multicurrency_code && $object->multicurrency_code != $conf->currency) {
 	print '<th class="linecoltotalht_currency right">'.$langs->trans('TotalHTShort');
-	print '&nbsp;<span class="opacitymedium">('.$langs->getCurrencySymbol($this->multicurrency_code).')<span></th>';
+	print '&nbsp;<span class="opacitymedium">('.$langs->getCurrencySymbol($object->multicurrency_code).')<span></th>';
 }
 
 if ($outputalsopricetotalwithtax) {
@@ -244,4 +244,4 @@ if ($action == 'selectlines') {
 print "</tr>\n";
 print "</thead>\n";
 
-print "<!-- END PHP TEMPLATE objectline_title.tpl.php -->\n";
+print "<!-- END PHP TEMPLATE testmodule_objectline_title.tpl.php -->\n";
