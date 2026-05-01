@@ -89,4 +89,18 @@ class ActionsTestModule extends CommonHookActions
 
 		return 0;
 	}
+
+	public function completeListOfReferent($parameters, &$object, &$action, $hookmanager)
+	{
+		global $conf, $user, $langs;
+
+		if ($this->isContext($parameters, ['projectOverview'])) {
+			$listOfReferentArray = $parameters['listofreferent'];
+			$listOfReferentArray['order_supplier']['margin'] = 'add';
+
+			$this->results = $listOfReferentArray;
+		}
+
+		return 0;
+	}
 }
