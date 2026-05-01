@@ -20,3 +20,5 @@
 *.back
 /.editorconfig
 /.gitattributes
+
+.DS_Store
