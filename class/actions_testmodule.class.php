@@ -28,7 +28,6 @@ class ActionsTestModule extends CommonHookActions
 	 */
 	public $errors = array();
 
-
 	/**
 	 * @var mixed[] Hook results. Propagated to $hookmanager->resArray for later reuse
 	 */
