@@ -96,6 +96,7 @@ class ActionsTestModule extends CommonHookActions
 
 		if ($this->isContext($parameters, ['projectOverview'])) {
 			$listOfReferentArray = $parameters['listofreferent'];
+			$listOfReferentArray['order']['margin'] = 'add';
 			$listOfReferentArray['order_supplier']['margin'] = 'add';
 
 			$this->results = $listOfReferentArray;
